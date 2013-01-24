@@ -1,3 +1,4 @@
+using Devart.Data.PostgreSql;
 using EventStore.Persistence.SqlPersistence.SqlDialects;
 
 namespace EventStore.Example
@@ -8,6 +9,12 @@ namespace EventStore.Example
 
 	internal static class MainProgram
 	{
+		static PgSqlMonitor _monitor = new PgSqlMonitor()
+																	 {
+																		 IsActive = true,
+																		 UseApp = true
+																	 };
+
 		private static readonly Guid StreamId = Guid.NewGuid(); // aggregate identifier
 		private static readonly byte[] EncryptionKey = new byte[]
 		{
@@ -33,21 +40,21 @@ namespace EventStore.Example
 
 		private static IStoreEvents WireupEventStore()
 		{
-			 return Wireup.Init()
-				.LogToOutputWindow()
-				.UsingInMemoryPersistence()
-				.UsingSqlPersistence("EventStore") // Connection string is in app.config
-					.WithDialect(new MsSqlDialect())
-					.EnlistInAmbientTransaction() // two-phase commit
-					.InitializeStorageEngine()
-					.TrackPerformanceInstance("example")
-					.UsingJsonSerialization()
-						.Compress()
-						.EncryptWith(EncryptionKey)
-				.HookIntoPipelineUsing(new[] { new AuthorizationPipelineHook() })
-				.UsingSynchronousDispatchScheduler()
-					.DispatchTo(new DelegateMessageDispatcher(DispatchCommit))
-				.Build();
+			return Wireup.Init()
+			 .LogToOutputWindow()
+			 .UsingInMemoryPersistence()
+			 .UsingSqlPersistence("EventStore") // Connection string is in app.config
+				 .WithDialect(new PostgreSqlDialect())
+				//.EnlistInAmbientTransaction() // two-phase commit
+				 .InitializeStorageEngine()
+				 .TrackPerformanceInstance("example")
+				 .UsingJsonSerialization()
+					 .Compress()
+					 .EncryptWith(EncryptionKey)
+			 .HookIntoPipelineUsing(new[] { new AuthorizationPipelineHook() })
+			 .UsingSynchronousDispatchScheduler()
+				 .DispatchTo(new DelegateMessageDispatcher(DispatchCommit))
+			 .Build();
 		}
 		private static void DispatchCommit(Commit commit)
 		{

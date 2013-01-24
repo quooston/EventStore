@@ -159,12 +159,12 @@ SELECT @StreamId, @StreamRevision, @Payload
   <data name="GetCommitsFromStartingRevision" xml:space="preserve">
     <value>SELECT StreamId, StreamRevision, CommitId, CommitSequence, CommitStamp, Headers, Payload
   FROM Commits
- WHERE StreamId = @StreamId
-   AND StreamRevision &gt;= @StreamRevision
-   AND (StreamRevision - Items) &lt;= @MaxStreamRevision
-   AND CommitSequence &gt; @CommitSequence
+ WHERE StreamId = :StreamId
+   AND StreamRevision &gt;= :StreamRevision
+   AND (StreamRevision - Items) &lt;= :MaxStreamRevision
+   AND CommitSequence &gt; :CommitSequence
  ORDER BY CommitSequence
- LIMIT @Limit;</value>
+ LIMIT :Limit;</value>
   </data>
   <data name="GetSnapshot" xml:space="preserve">
     <value>SELECT *

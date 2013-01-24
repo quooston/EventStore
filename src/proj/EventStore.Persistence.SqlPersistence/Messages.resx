@@ -282,4 +282,7 @@
   <data name="ConcurrentWriteDetected" xml:space="preserve">
     <value>Concurrent write detected.</value>
   </data>
+  <data name="CommandCreation" xml:space="preserve">
+    <value>Cound not create database command.</value>
+  </data>
 </root>
