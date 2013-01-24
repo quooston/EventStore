@@ -54,7 +54,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OracleNativeStatements.resx</DependentUpon>
     </Compile>
-    <Compile Include="SqlDialects\PgDbStatement.cs" />
+    <Compile Include="SqlDialects\DotConnectPgDbStatement.cs" />
     <Compile Include="UniqueKeyViolationException.cs" />
     <Compile Include="ThreadScope.cs" />
     <Compile Include="Messages.Designer.cs">

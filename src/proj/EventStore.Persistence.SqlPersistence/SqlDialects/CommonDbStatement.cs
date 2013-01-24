@@ -12,11 +12,11 @@ namespace EventStore.Persistence.SqlPersistence.SqlDialects
 		private static readonly ILog Logger = LogFactory.BuildLogger(typeof(CommonDbStatement));
 		private readonly ISqlDialect dialect;
 		private readonly TransactionScope scope;
-		protected readonly IDbConnection connection;
-		protected readonly IDbTransaction transaction;
+		private readonly IDbConnection connection;
+		private readonly IDbTransaction transaction;
 
 		protected IDictionary<string, object> Parameters { get; private set; }
-        protected ISqlDialect Dialect { get { return dialect; } }
+		protected ISqlDialect Dialect { get { return dialect; } }
 
 		public CommonDbStatement(
 			ISqlDialect dialect,

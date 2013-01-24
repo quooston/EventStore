@@ -4,9 +4,9 @@ using Devart.Data.PostgreSql;
 
 namespace EventStore.Persistence.SqlPersistence.SqlDialects
 {
-	public class PgDbStatement : CommonDbStatement
+	public class DotConnectPgDbStatement : CommonDbStatement
 	{
-		public PgDbStatement(ISqlDialect dialect, TransactionScope scope, IDbConnection connection, IDbTransaction transaction)
+		public DotConnectPgDbStatement(ISqlDialect dialect, TransactionScope scope, IDbConnection connection, IDbTransaction transaction)
 			: base(dialect, scope, connection, transaction)
 		{ }
 

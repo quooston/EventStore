@@ -45,7 +45,7 @@ namespace EventStore.Example
 			 .UsingInMemoryPersistence()
 			 .UsingSqlPersistence("EventStore") // Connection string is in app.config
 				 .WithDialect(new PostgreSqlDialect())
-				//.EnlistInAmbientTransaction() // two-phase commit
+					//.EnlistInAmbientTransaction() // two-phase commit
 				 .InitializeStorageEngine()
 				 .TrackPerformanceInstance("example")
 				 .UsingJsonSerialization()
